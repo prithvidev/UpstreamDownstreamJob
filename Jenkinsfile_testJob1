@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World, This is test job 1,'
+                echo "${message}"
+            }
+        }
+        stage('Trigger Downstream') {
+            steps {
+                build job: 'Upstream Downstream Job', parameters: [string(name: 'message', value: params.message)]
+            }
+        }
+    }
+}
