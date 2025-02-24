@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'message', defaultValue: 'default_value', description: 'Received value')
+    }
+    stages {
+        stage('Hello') {
+            steps {
+                script {
+                    echo "${params.message}"
+                }
+            }
+        }
+    }
+}
